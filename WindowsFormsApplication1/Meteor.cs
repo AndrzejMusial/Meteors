@@ -11,6 +11,7 @@ namespace MeteorGame
     {
         Random random;
         Pen pen = new Pen(Brushes.Beige);
+        Pen markingPen = new Pen(Brushes.HotPink);
 
         private const double sizeMultiplier = 1;
 
@@ -124,10 +125,12 @@ namespace MeteorGame
             return coordinates;
         }
 
-        public void Draw(Graphics g)
+        public void Draw(Graphics g, int count)
         {
             GenerateMeteorShape();
             g.DrawPolygon(pen, meteorShape);
+            if (count == 1)
+                g.DrawEllipse(markingPen, Location.X - size, Location.Y - size, 2 * size, 2 * size);
         }
 
         public void Move()
